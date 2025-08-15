@@ -85,14 +85,34 @@
       }
 
       side1Input.addEventListener("keypress", (e) => {
-        if (sidechoice === "side2") {
-          alert(
-            "You are on the Defense side. Please use the Defense input box."
-          );
-          return;
+      if (sidechoice === "side2") {
+        alert("You are on the Defense side. Please use the Defense input box.");
+        return;
+      }
+
+      const value = side1Input.value.trim();
+      if (value.startsWith("/")) {
+        switch (value.startsWith("/")) {
+          case "clear":
+            side1Chatbox.innerHTML = "";
+            return;
+          case "help":
+            alert("Available commands:\n/clear - Clear chat\n/help - Show help");
+            return;
+          case "vote":
+            side1Input.disabled = true;
+            sendMessage("side1", side1Input);
+            return;
+          default:
+            alert("Unknown command. Use /help for commands.");
+
         }
-        if (e.key === "Enter") sendMessage("side1", side1Input);
-      });
+        e.preventDefault();
+        return;
+      }
+
+    if (e.key === "Enter") sendMessage("side1", side1Input);
+});
 
       side2Input.addEventListener("keypress", (e) => {
         if (sidechoice === "side1") {
@@ -101,6 +121,26 @@
           );
           return;
         }
+      const value = side2Input.value.trim();
+      if (value.startsWith("/")) {
+        switch (value.startsWith("/")) {
+          case "clear":
+            side2Chatbox.innerHTML = "";
+            return;
+          case "help":
+            alert("Available commands:\n/clear - Clear chat\n/help - Show help");
+            return;
+          case "vote":
+            side2Input.disabled = true;
+            sendMessage("side1", side1Input);
+            return;
+          default:
+            alert("Unknown command. Use /help for commands.");
+
+        }
+        e.preventDefault();
+        return;
+      }
         if (e.key === "Enter") sendMessage("side2", side2Input);
       });
     </script>
