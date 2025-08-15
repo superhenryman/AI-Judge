@@ -90,7 +90,10 @@
         return;
       }
 
-      const value = side1Input.value.trim();
+
+
+    if (e.key === "Enter") {
+            const value = side1Input.value.trim();
       if (value.startsWith("/")) {
         switch (value.startsWith("/")) {
           case "clear":
@@ -110,8 +113,8 @@
         e.preventDefault();
         return;
       }
-
-    if (e.key === "Enter") sendMessage("side1", side1Input);
+       sendMessage("side1", side1Input) 
+    };
 });
 
       side2Input.addEventListener("keypress", (e) => {
@@ -121,8 +124,10 @@
           );
           return;
         }
-      const value = side2Input.value.trim();
-      if (value.startsWith("/")) {
+      
+        if (e.key === "Enter") { 
+          const value = side2Input.value.trim();
+       if (value.startsWith("/")) {
         switch (value.startsWith("/")) {
           case "clear":
             side2Chatbox.innerHTML = "";
@@ -141,7 +146,8 @@
         e.preventDefault();
         return;
       }
-        if (e.key === "Enter") sendMessage("side2", side2Input);
+          sendMessage("side2", side2Input) 
+        };
       });
     </script>
   </body>
