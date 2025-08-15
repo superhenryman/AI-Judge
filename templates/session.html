@@ -95,14 +95,15 @@
     if (e.key === "Enter") {
             const value = side1Input.value.trim();
       if (value.startsWith("/")) {
-        switch (value.startsWith("/")) {
-          case "/clear":
+        const command = value.substring(1);
+        switch (command) {
+          case "clear":
             side1Chatbox.innerHTML = "";
             return;
-          case "/help":
+          case "help":
             alert("Available commands:\n/clear - Clear chat\n/help - Show help");
             return;
-          case "/vote":
+          case "vote":
             side1Input.disabled = true;
             sendMessage("side1", side1Input);
             return;
@@ -127,15 +128,17 @@
       
         if (e.key === "Enter") { 
           const value = side2Input.value.trim();
+          
        if (value.startsWith("/")) {
-        switch (value.startsWith("/")) {
-          case "/clear":
+        const command = value.substring(1);
+        switch (command) {
+          case "clear":
             side2Chatbox.innerHTML = "";
             return;
-          case "/help":
+          case "help":
             alert("Available commands:\n/clear - Clear chat\n/help - Show help");
             return;
-          case "/vote":
+          case "vote":
             side2Input.disabled = true;
             sendMessage("side1", side1Input);
             return;
