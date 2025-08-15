@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Judge</title>
+    <link rel="stylesheet" href="../static/home.css" />
+  </head>
+  <body>
+    <div class="home-container">
+      <h1>⚖️ AI Judge</h1>
+      <p>
+        Ever been faced with a ridiculous argument and the other side just won't
+        budge? Create a session and let justice decide.
+      </p>
+      <p>Made by superhenryman and styling by jerry.</p>
+      <form action="/create_session" method="post" class="session-form">
+        <label for="session_name">Session Name</label>
+        <input type="text" name="session_name" required />
+
+        <label for="name">Your Name</label>
+        <input type="text" name="username" required />
+
+        <label for="side">Choose Your Side</label>
+        <select name="side" id="side">
+          <option value="side1">Prosecution</option>
+          <option value="side2">Defense</option>
+        </select>
+
+        <button type="submit">Enter the Courtroom</button>
+      </form>
+    </div>
+  </body>
+</html>

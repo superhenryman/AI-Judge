@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courtroom</title>
+    <link rel="stylesheet" href="../static/session.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+  </head>
+  <body>
+    <div class="courtroom-container">
+      <div class="judge-section">
+        <h1 id="username"></h1>
+        <h2>Session: {{ session_name }}</h2>
+        <div class="judge-title">👩‍⚖️ Judge</div>
+        <div id="system" class="chatbox"></div>
+      </div>
+
+      <div class="sides">
+        <div class="side defense">
+          <h2>🛡️ Defense</h2>
+          <div id="side2-chatbox" class="chatbox"></div>
+          <input id="side2-input" placeholder="Message Defense" />
+        </div>
+
+        <div class="side prosecution">
+          <h2>⚖️ Prosecution</h2>
+          <div id="side1-chatbox" class="chatbox"></div>
+          <input id="side1-input" placeholder="Message Prosecution" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const socket = io();
+      const sessionName = "{{ session_name }}";
+      const sidechoice = new URLSearchParams(window.location.search).get(
+        "side"
+      );
+      const username = new URLSearchParams(window.location.search).get(
+        "username"
+      );
+
+      if (sidechoice === "side1") {
+        document.getElementById("side2-input").disabled = true;
+      } else if (sidechoice === "side2") {
+        document.getElementById("side1-input").disabled = true;
+      }
+
+      document.getElementById(
+        "username"
+      ).innerText = `Welcome to the courtroom! Your name is: ${username
+        .replace("[PROSECUTION]", "")
+        .replace("[DEFENSE]", "")}`;
+
+      socket.emit("join", { session: sessionName, username });
+
+      const side1Chatbox = document.getElementById("side1-chatbox");
+      const side2Chatbox = document.getElementById("side2-chatbox");
+      const side1Input = document.getElementById("side1-input");
+      const side2Input = document.getElementById("side2-input");
+
+      socket.on("message", (data) => {
+        let chatbox;
+        if (data.side === "side1") chatbox = side1Chatbox;
+        else if (data.side === "side2") chatbox = side2Chatbox;
+        else if (data.side === "system")
+          chatbox = document.getElementById("system");
+        else chatbox = side1Chatbox;
+
+        chatbox.innerHTML += `<div class="message">${data.message}</div>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+      });
+
+      function sendMessage(side, input) {
+        const message = input.value.trim();
+        if (!message) return;
+        socket.emit("message", {
+          session: sessionName,
+          side,
+          message,
+          username,
+        });
+        input.value = "";
+      }
+
+      side1Input.addEventListener("keypress", (e) => {
+        if (sidechoice === "side2") {
+          alert(
+            "You are on the Defense side. Please use the Defense input box."
+          );
+          return;
+        }
+        if (e.key === "Enter") sendMessage("side1", side1Input);
+      });
+
+      side2Input.addEventListener("keypress", (e) => {
+        if (sidechoice === "side1") {
+          alert(
+            "You are on the Prosecution side. Please use the Prosecution input box."
+          );
+          return;
+        }
+        if (e.key === "Enter") sendMessage("side2", side2Input);
+      });
+    </script>
+  </body>
+</html>

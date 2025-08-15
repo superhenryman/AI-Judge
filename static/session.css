@@ -1,0 +1,161 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #f0f0f0;
+  color: #222;
+  animation: fadeIn 1s ease-in;
+  transition: background 0.3s, color 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #121212;
+    color: #f0f0f0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.courtroom-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.judge-section {
+  background-color: #333;
+  color: white;
+  width: 85%;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.5s ease-out;
+}
+
+.judge-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.sides {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  gap: 25px;
+}
+
+.side {
+  flex: 1;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  animation: popIn 0.6s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+}
+
+.defense {
+  background: #d1e7dd;
+}
+
+.prosecution {
+  background: #f8d7da;
+}
+
+@media (prefers-color-scheme: dark) {
+  .defense {
+    background: #1e3d35;
+  }
+  .prosecution {
+    background: #3d1e1e;
+  }
+}
+
+.chatbox {
+  height: 220px;
+  overflow-y: auto;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+  .chatbox {
+    background-color: #1e1e1e;
+    border-color: #444;
+  }
+}
+
+.message {
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  background: #eee;
+  border-radius: 6px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .message {
+    background: #2a2a2a;
+  }
+}
+
+.chat-input {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid #888;
+  outline: none;
+  background: #fdfdfd;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.chat-input:focus {
+  border-color: #555;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .chat-input {
+    background: #222;
+    color: #f0f0f0;
+    border-color: #666;
+  }
+
+  .chat-input:focus {
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+  }
+}

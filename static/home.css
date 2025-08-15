@@ -1,0 +1,135 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #f0f0f0;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  animation: fadeIn 1s ease-in;
+  transition: background 0.3s, color 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #121212;
+    color: #f0f0f0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.home-container {
+  text-align: center;
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  animation: popIn 0.5s ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .home-container {
+    background: #1e1e1e;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  }
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2.2em;
+}
+
+p {
+  font-size: 1.05em;
+  margin-bottom: 30px;
+}
+
+.session-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.session-form input,
+.session-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #888;
+  font-size: 1em;
+  outline: none;
+  background: #fdfdfd;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.session-form input:focus,
+.session-form select:focus {
+  border-color: #555;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .session-form input,
+  .session-form select {
+    background: #222;
+    color: #f0f0f0;
+    border-color: #666;
+  }
+
+  .session-form input:focus,
+  .session-form select:focus {
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+  }
+}
+
+button {
+  padding: 12px;
+  font-size: 1em;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #555;
+}
+
+@media (prefers-color-scheme: dark) {
+  button {
+    background: #444;
+  }
+
+  button:hover {
+    background: #666;
+  }
+}
