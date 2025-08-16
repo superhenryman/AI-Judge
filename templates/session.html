@@ -104,8 +104,8 @@
             alert("Available commands:\n/clear - Clear chat\n/help - Show help");
             return;
           case "vote":
-            side1Input.disabled = true;
             sendMessage("side1", side1Input);
+            side1Input.disabled = true;
             return;
           default:
             alert("Unknown command. Use /help for commands.");
@@ -139,8 +139,8 @@
             alert("Available commands:\n/clear - Clear chat\n/help - Show help");
             return;
           case "vote":
-            side2Input.disabled = true;
             sendMessage("side2", side2Input);
+            side2Input.disabled = true;
             return;
           default:
             alert("Unknown command. Use /help for commands.");
