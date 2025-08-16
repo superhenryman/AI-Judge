@@ -85,38 +85,14 @@
       }
 
       side1Input.addEventListener("keypress", (e) => {
-      if (sidechoice === "side2") {
-        alert("You are on the Defense side. Please use the Defense input box.");
-        return;
-      }
-
-
-
-    if (e.key === "Enter") {
-            const value = side1Input.value.trim();
-      if (value.startsWith("/")) {
-        const command = value.substring(1);
-        switch (command) {
-          case "clear":
-            side1Chatbox.innerHTML = "";
-            return;
-          case "help":
-            alert("Available commands:\n/clear - Clear chat\n/help - Show help");
-            return;
-          case "vote":
-            sendMessage("side1", side1Input);
-            side1Input.disabled = true;
-            return;
-          default:
-            alert("Unknown command. Use /help for commands.");
-
+        if (sidechoice === "side2") {
+          alert(
+            "You are on the Defense side. Please use the Defense input box."
+          );
+          return;
         }
-        e.preventDefault();
-        return;
-      }
-       sendMessage("side1", side1Input) 
-    };
-});
+        if (e.key === "Enter") sendMessage("side1", side1Input);
+      });
 
       side2Input.addEventListener("keypress", (e) => {
         if (sidechoice === "side1") {
@@ -125,32 +101,7 @@
           );
           return;
         }
-      
-        if (e.key === "Enter") { 
-          const value = side2Input.value.trim();
-          
-       if (value.startsWith("/")) {
-        const command = value.substring(1);
-        switch (command) {
-          case "clear":
-            side2Chatbox.innerHTML = "";
-            return;
-          case "help":
-            alert("Available commands:\n/clear - Clear chat\n/help - Show help");
-            return;
-          case "vote":
-            sendMessage("side2", side2Input);
-            side2Input.disabled = true;
-            return;
-          default:
-            alert("Unknown command. Use /help for commands.");
-
-        }
-        e.preventDefault();
-        return;
-      }
-          sendMessage("side2", side2Input) 
-        };
+        if (e.key === "Enter") sendMessage("side2", side2Input);
       });
     </script>
   </body>
